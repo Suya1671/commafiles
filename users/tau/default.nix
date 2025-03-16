@@ -10,7 +10,7 @@
 
     ezModules.git
     ezModules.wezterm
-    ezModules.nushell
+    # ezModules.nushell
     ezModules.syncthing
     ezModules.xdg
 
@@ -28,7 +28,7 @@
       cachix # caching stuff
       rsync
       zellij
-      (openocd.override { extraHardwareSupport = ["bcm2835gpio"]; })
+      # (openocd.override { extraHardwareSupport = ["bcm2835gpio"]; })
     ];
   };
 

@@ -6,7 +6,8 @@
 }: {
   boot = {
     loader = {
-      systemd-boot.enable = lib.mkForce false;
+      systemd-boot.enable = lib.mkForce true;
+      systemd-boot.netbootxyz.enable = true;
       grub = {
         enable = lib.mkDefault false; # enable when setting up/not securebooting
         efiSupport = true;
@@ -24,7 +25,6 @@
     extraModprobeConfig = "options kvm_intel nested=1";
     supportedFilesystems = ["ntfs" "mtpfs"];
 
-    kernelModules = ["kvm-intel"];
     kernelPackages = pkgs.linuxKernel.packages.linux_6_11;
 
     plymouth = {

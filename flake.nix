@@ -1,5 +1,5 @@
 {
-  description = "Suyashtnt's (maybe) good dotfiles";
+  description = "Suya's (maybe) good dotfiles";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -20,7 +20,7 @@
     };
 
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -82,7 +82,7 @@
     # };
 
     kleur = {
-      url = "github:suyashtnt/kleur";
+      url = "github:Suya1671/kleur";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -150,7 +150,7 @@
     # };
 
     zen-browser = {
-      url = "github:MarceColl/zen-browser-flake";
+      url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

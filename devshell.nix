@@ -6,12 +6,12 @@
   }: {
     devShells.default = pkgs.mkShell {
       packages = with pkgs; [
-        yaml-language-server # yaml LSP
+        # yaml-language-server # yaml LSP
         alejandra # uncomprimising nix formatter
         marksman # markdown LSP
         nixd # nix LSP
-        nodejs
-        nodePackages.typescript-language-server # typescript LSP for ags autocomplete
+        # nodejs
+        # nodePackages.typescript-language-server # typescript LSP for ags autocomplete
         sops
       ];
     };

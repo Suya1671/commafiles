@@ -20,8 +20,8 @@
     ezModules.niri
     ezModules.openrgb
     ezModules.tablet
-    ezModules.steam
-    ezModules.sunshine
+    # ezModules.steam
+    # ezModules.sunshine
 
     ezModules.theme
     ezModules.kleur

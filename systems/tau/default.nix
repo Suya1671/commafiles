@@ -18,6 +18,5 @@
     ezModules.sops
 
     "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-installer.nix"
-    "${inputs.nixos-hardware}/raspberry-pi/4"
   ];
 }

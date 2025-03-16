@@ -19,7 +19,7 @@
   sops.templates."navidrome-config.toml" = {
     content = ''
       MusicFolder = "/music"
-      Address = "192.168.1.23"
+      Address = "192.168.3.14"
       LastFM.Enabled = true
       LastFM.ApiKey = "${config.sops.placeholder."lastfm/key"}"
       LastFM.Secret = "${config.sops.placeholder."lastfm/secret"}"
@@ -38,7 +38,7 @@
     # unused but required by nixos module
     settings = {
       MusicFolder = "/music";
-      Address = "192.168.1.23";
+      Address = "192.168.1.14";
     };
   };
 
@@ -51,7 +51,7 @@
       builtins.storeDir
       "/etc"
       "/music"
-      "/run/secrets-rendered"
+      "/run/secrets/rendered"
     ];
     serviceConfig.DynamicUser = lib.mkForce false;
     serviceConfig.User = config.users.users.navidrome.name;

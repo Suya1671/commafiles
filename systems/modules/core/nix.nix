@@ -7,16 +7,16 @@
   environment.defaultPackages = [];
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowBroken = false;
+  nixpkgs.config.allowBroken = true; # latest kernel
 
   nixpkgs.config.permittedInsecurePackages = [
-     "electron-24.8.6" # Obsidian Wayland, above does not work 
+    "electron-24.8.6" # obsidian
   ];
 
   nixpkgs.overlays = [
     inputs.nixpkgs-f2k.overlays.terminal-emulators
     # inputs.helix.overlays.default
-    (final: super: rec {
+    (final: super: {
       makeModulesClosure = x:
         super.makeModulesClosure (x // {allowMissing = true;});
 

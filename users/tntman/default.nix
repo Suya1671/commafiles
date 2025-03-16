@@ -2,14 +2,13 @@
   pkgs,
   ezModules,
   inputs,
-  config,
   ...
 }: {
   imports = [
     inputs.nix-index-database.hmModules.nix-index
 
     ezModules.electron
-    ezModules.firefox
+    # ezModules.firefox
     ezModules.git
     ezModules.gtk
     ezModules.niri
@@ -18,8 +17,7 @@
     ezModules.kleur
     ezModules.syncthing
     ezModules.xdg
-    # ezModules.ags TODO commashell/astal module
-    ezModules.neofetch
+    ezModules.fastfetch
     ezModules.obs
     ezModules.wlsunset
     ezModules.vscode
@@ -28,6 +26,7 @@
     ezModules.zellij
 
     ezModules.shell
+    ezModules.fish
     ezModules.nushell
 
     ezModules.terminal
@@ -47,30 +46,32 @@
 
     packages = with pkgs; [
       (pkgs.obsidian.override {
-        electron = pkgs.electron_24;
+        electron = pkgs.electron_32;
       }) # notes
       anki # cards (obsidian spaced reptition has failed me again)
 
       nautilus # file manager
       loupe # image viewer
       fragments # for torrenting... :cluelesser:
-      kicad # PCB gaming
-      prismlauncher # minceraft
       signal-desktop
+      kicad
+      freecad-wayland
 
       sptlrx # funni lyrics
 
-      zotero_7 # reference manager go brrr
       fractal # matrix go brrr
-      libreoffice # presentations and stuff go brrr
-      feishin # music go brrr
-      lutris # games go brrr
+      polari # IRC go brrr
+      (pkgs.feishin.override {
+        # now this is just cursed
+        electron_31 = pkgs.electron_32;
+      }) # music go brrr
       protonup-qt # proton-GE go brrr
       protontricks # proton sound go brrr
       pavucontrol # sound go brrr
-      qgis # GIS go brrr
       openttd # gamig time
-      inputs.zen-browser.packages."${system}".specific # browser go brrr
+      inputs.zen-browser.packages."${system}".default # browser go brrr
+      slack
+      zed-editor
 
       # CLI utils
       btop # monitoring stuff

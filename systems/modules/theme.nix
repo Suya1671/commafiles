@@ -34,8 +34,8 @@ in {
       };
 
       sansSerif = {
-        package = pkgs.inter;
-        name = "Inter";
+        package = pkgs.recursive;
+        name = "Recursive Sans Linear Static";
       };
 
       monospace = {

@@ -20,6 +20,7 @@ in {
       "Mod+P".action = sh "astal toggle right";
 
       "Mod+F".action = fullscreen-window;
+      "Mod+V".action = toggle-window-floating;
 
       "Mod+H".action = focus-column-left;
       "Mod+J".action = focus-window-or-workspace-down;

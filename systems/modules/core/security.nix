@@ -18,6 +18,7 @@
   
   services.udev.packages = with pkgs; [
     gnome-settings-daemon
+    picotool
   ];
 
   # add nushell to list of valid shells

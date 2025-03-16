@@ -105,8 +105,7 @@ $env.config = {
     algorithm: "fuzzy"  # prefix or fuzzy
   }
   filesize: {
-    metric: true # true => KB, MB, GB (ISO standard), false => KiB, MiB, GiB (Windows standard)
-    format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, zb, zib, auto
+    unit: "metric" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, zb, zib, auto
   }
   footer_mode: 25 # always, never, number_of_rows, auto
   float_precision: 2
@@ -153,7 +152,7 @@ $env.config = {
     }]
     env_change: {
       PWD: [{|before, after|
-        null  # replace with source code to run if the PWD environment is different since the last repl input
+        if $before != $after { zoxide add -- $after } else { null }
       }]
     }
     display_output: { ||
@@ -488,14 +487,14 @@ def multiple_completers [spans: list<string>] {
     return $specialized_completer_result
   }
 
-  let fish_completer_result = do $fish_completer $spans
-  if $fish_completer_result != null {
-    return $fish_completer_result
-  }
-
   let carapace_completer_result = do $carapace_completer $spans
   if $carapace_completer_result != null {
     return $carapace_completer_result
+  }
+
+  let fish_completer_result = do $fish_completer $spans
+  if $fish_completer_result != null {
+    return $fish_completer_result
   }
 
   $null_completer

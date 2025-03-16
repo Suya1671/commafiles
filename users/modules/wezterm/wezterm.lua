@@ -15,7 +15,14 @@ config.font = wezterm.font_with_fallback {
 config.enable_wayland = true
 config.enable_tab_bar = false
 config.underline_thickness = "2pt"
+config.enable_kitty_keyboard = true
 
+config.visual_bell = {
+  fade_in_function = 'EaseIn',
+  fade_in_duration_ms = 150,
+  fade_out_function = 'EaseOut',
+  fade_out_duration_ms = 150,
+}
 local gpus = wezterm.gui.enumerate_gpus()
 config.front_end = "WebGpu"
 config.webgpu_preferred_adapter = gpus[1]

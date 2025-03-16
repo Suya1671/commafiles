@@ -1,7 +1,8 @@
 {pkgs, ...}: {
   services.printing = {
     enable = true;
-    drivers = [pkgs.epson-escpr];
+    # https://github.com/NixOS/nixpkgs/pull/369304
+    # drivers = [pkgs.epson-escpr];
   };
 
   hardware.sane.enable = true;

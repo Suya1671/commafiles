@@ -57,9 +57,30 @@
     helix
   ];
 
+  boot = {
+    initrd.availableKernelModules = [
+      "usbhid"
+      "usb_storage"
+      "vc4"
+      "pcie_brcmstb" # required for the pcie bus to work
+      "reset-raspberrypi" # required for vl805 firmware to load
+    ];
+
+    loader = {
+      grub.enable = false;
+      generic-extlinux-compatible.enable = true;
+    };
+  };
+
+  # Required for the Wireless firmware
   # cloudflared
   services.cloudflared = {
     enable = true;
+
+    package = pkgs.cloudflared.overrideAttrs (final: prev: {
+      doCheck = false;
+    });
+
     tunnels = {
       "d9b6c172-5236-4cfe-b441-10f2e83e5eb4" = {
          credentialsFile = "${config.sops.secrets."cloudflared/tau".path}";

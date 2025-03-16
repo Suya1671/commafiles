@@ -1,10 +1,10 @@
-{pkgs, inputs, ...}: {
+{pkgs, inputs, config, ...}: {
   users.users.tntman = {
     isNormalUser = true;
     description = "Tabiasgeee Human";
-    extraGroups = ["networkmanager" "wheel" "scanner" "lp" "docker"];
+    extraGroups = ["networkmanager" "wheel" "scanner" "lp" "docker" "dialout"];
     initialPassword = "password"; # Change this with passwd
-    shell = pkgs.nushell;
+    shell = pkgs.fish;
   };
   nixpkgs.hostPlatform = "x86_64-linux";
 
@@ -12,12 +12,13 @@
 
   boot = {
     lanzaboote = {
-      enable = true;
+      enable = false;
       pkiBundle = "/etc/secureboot";
     };
   };
 
   networking.hostName = "GAMER-PC";
+  hardware.nvidia-container-toolkit.enable = true;
 
   time.timeZone = "Africa/Johannesburg";
   i18n.defaultLocale = "en_ZA.UTF-8";
@@ -41,10 +42,15 @@
       #settings.PermitRootLogin = "yes";
     };
 
-    sunshine = {
+    # cloudflared
+    cloudflared = {
       enable = true;
-      capSysAdmin = true;
-      openFirewall = true;
+      tunnels = {
+        "ca4db441-b264-4db7-aa4e-cf59764d73c5" = {
+           credentialsFile = "${config.sops.secrets."cloudflared/gamer-pc".path}";
+           default = "http_status:404";
+        };
+      };
     };
 
     jellyfin.enable = true;
@@ -54,10 +60,12 @@
     flatpak.enable = true;
     gvfs.enable = true;
     teamviewer.enable = true; # Being school tech support moment
-  };
+    telepathy.enable = true;
+};
 
   programs.dconf.enable = true;
   programs.wshowkeys.enable = true;
+  programs.fish.enable = true;
 
   virtualisation = {
     podman = {
@@ -77,4 +85,10 @@
     xdg-desktop-portal-gtk
     sbctl
   ];
+
+  sops.secrets."cloudflared/gamer-pc" = {
+      # Both are "cloudflared" by default
+      owner = config.services.cloudflared.user;
+      group = config.services.cloudflared.group;
+  };
 }

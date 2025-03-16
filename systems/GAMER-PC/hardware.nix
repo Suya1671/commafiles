@@ -47,8 +47,9 @@
   };
 
   fileSystems."/mnt/BulkStorage" =
-    { device = "/dev/disk/by-uuid/5e9a27bd-6eda-47a2-8473-d9d4ef4a2cf8";
-      fsType = "ext4";
+    { device = "/dev/disk/by-label/GAMES";
+      fsType = "ntfs-3g";
+      options = [ "rw" "uid=1000"];
     };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
